@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 app = Flask(__name__)
 
 
@@ -9,11 +10,11 @@ def showCategories():
 	return "All categories"
 
 #List all items in a specific category
-@app.route('/categorie/<int:category_id>/')
+@app.route('/category/<int:category_id>/')
 def category_items(category_id):
 	return "shows all the items available for the category"
 
-
+#Sjows the description of the item
 @app.route('/category/<int:category_id>/<int:item_id>')
 def category_items(category_id, item_id):
 	return "shows the information of the item"
