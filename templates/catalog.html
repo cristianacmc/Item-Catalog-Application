@@ -4,12 +4,16 @@
 	<title>catalog</title>
 </head>
 <body>
-	{% for c in catalog %}
+	<h1>{{ category.name }}</h1>
 
-	<a href="#">{{ c.name }}</a>
+	{% for i in items %}
+
+	<a href="#">{{ i.name }}</a>
 
 </br>
 	{% endfor %}	
 
 </body>
-</html>
+
+
+
