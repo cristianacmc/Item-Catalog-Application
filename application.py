@@ -1,38 +1,62 @@
 from flask import Flask
 from flask import render_template
+from flask import request
+from flask import redirect
+from flask import url_for
 app = Flask(__name__)
 
 
-#Show all categories in my database
+#Show all categories 
 @app.route('/')
-@app.route('/categories')
+@app.route('/categories/')
 def showCategories():
-	return "All categories"
+	return render_template('category.html', category = categories )
 
 #List all items in a specific category
 @app.route('/category/<int:category_id>/')
-def category_items(category_id):
-	return "shows all the items available for the category"
+def categoryItems(category_id):
+	category = session.query(Category).filter_by(id=category_id).one()
+	items = session.query(CategoryItem).filter_by(category_id = category_id).all()
+	return render_template('catalog.html', category=category, items=items, category_id=category_id)
+	
 
-#Sjows the description of the item
+#Shows the description of the item
 @app.route('/category/<int:category_id>/<int:item_id>')
-def category_items(category_id, item_id):
+def ItemsDescription(category_id, item_id):
 	return "shows the information of the item"
 
 
 #Add a new item info
-@app.route('/category/<int:category_id>/new')
-def newItemInfo(category_id):
-	return "page to create specifications about the items"
+@app.route('/category/<int:category_id>/<int:item_id>/new', methods=['GET', 'POST'])
+def newItemInfo(category_id, item_id):
+	if request.method == 'POST':
+		newInfo = CategoryItem(name = request.form['name'], category_id = category_id)
+		session.add(newInfo)
+		session.commit()
+	    return redirect(url_for('categoryItems', category_id = category_id))
+	else:
+		return render_template('addinfo.html', category_id = category_id, item_id = item_id)
+
+	
 
 #Update item information
-@app.route('/category/<int:category_id>/<int:item_id>/edit')
-def editCategoryItem(category_id, item_id):
-	return "page to update an item information"
+@app.route('/category/<int:category_id>/<int:item_id>/edit', methods = ['GET', 'POST'])
+def editItem(category_id, item_id):
+	item = session.query(CategoryItem).filter_by(id = item_id).one()
+	if request.method == 'POST':
+		if request.form['name']:
+			item.name = request.form['name']
+		if request.form['description']:
+			item.description = request.form['description']
+		session.add(item)
+		session.commit()
+		
+
+
 
 
 #Delete item information
-@app.route('/category/<int:category_id>/<int:item_id>/delete')
+@app.route('/category/<int:category_id>/<int:item_id>/delete', methods = ['GET', 'POST'])
 def deleteCategoryItem(category_id, item_id):
 	return "page to delete an item information"	
 
