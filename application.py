@@ -5,7 +5,7 @@ from flask import redirect
 from flask import url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from database import Base, User, Category, CategoryItem
+from database import Base, Category, CategoryItem
 
 app = Flask(__name__)
 
@@ -69,8 +69,6 @@ def editItem(category_id, item_id):
 		
 
 
-
-
 #Delete item information
 @app.route('/category/<int:category_id>/<int:item_id>/delete', methods = ['GET', 'POST'])
 def deleteCategoryItem(category_id, item_id):
@@ -83,9 +81,6 @@ def deleteCategoryItem(category_id, item_id):
 		return render_template('deleteItem.html', item = item)
 
 		
-
-
-
 if __name__ == '__main__':
 	app.debug = True
 	app.run(host = '0.0.0.0', port = 8000)
