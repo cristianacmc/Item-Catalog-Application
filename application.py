@@ -3,21 +3,32 @@ from flask import render_template
 from flask import request
 from flask import redirect
 from flask import url_for
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+from database import Base, User, Category, CategoryItem
+
 app = Flask(__name__)
 
+# Connect to Database and create database session
+engine = create_engine('sqlite:///catalog.db')
+Base.metadata.bind = engine
+
+DBSession = sessionmaker(bind=engine)
+session = DBSession()
 
 #Show all categories 
 @app.route('/')
 @app.route('/categories/')
 def showCategories():
+	categories = session.query(Category).all()
 	return render_template('category.html', category = categories )
 
 #List all items in a specific category
 @app.route('/category/<int:category_id>/')
 def categoryItems(category_id):
-	category = session.query(Category).filter_by(id=category_id).one()
+	category = session.query(Category).filter_by(id = category_id).one()
 	items = session.query(CategoryItem).filter_by(category_id = category_id).all()
-	return render_template('catalog.html', category=category, items=items, category_id=category_id)
+	return render_template('catalog.html', category = category, items=items)
 	
 
 #Shows the description of the item
@@ -33,7 +44,7 @@ def newItemInfo(category_id, item_id):
 		newInfo = CategoryItem(name = request.form['name'], category_id = category_id)
 		session.add(newInfo)
 		session.commit()
-	    return redirect(url_for('categoryItems', category_id = category_id))
+		return redirect(url_for('categoryItems', category_id = category_id))
 	else:
 		return render_template('addinfo.html', category_id = category_id, item_id = item_id)
 
@@ -48,8 +59,13 @@ def editItem(category_id, item_id):
 			item.name = request.form['name']
 		if request.form['description']:
 			item.description = request.form['description']
+		if request.form['Category']:
+			item.category = request.form['category']
 		session.add(item)
 		session.commit()
+		return redirect(url_for('categoryItems', category_id = category_id))
+	else:
+		return render_template('editItem.html', category_id = category_id, item_id = item_id, i = item )
 		
 
 

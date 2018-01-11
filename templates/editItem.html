@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>edit item</title>
+</head>
+<body>
+	<h1>Edit Modality</h1>
+
+	<forn action= "{{ url_for('editItem', category_id = category_id, item_id = i.id)}}" method= 'post'>
+
+		<p>Name:</p>
+		<input type = 'text' size='30' name='name' placeholder = '{{i.name}}'>
+		<input type='submit' value='Edit'>
+
+
+		<p>Description:</p>
+		<input type = 'text' size='250' name='description' placeholder = "{{i.description}}">
+		<input type='submit' value='Edit'>
+
+		<p>Category:</p>
+		<input type = 'text' size='30' name='category' placeholder = "{{i.category}}">
+		<input type='submit' value='Edit'>		
+
+
+	<a href = '{{url_for('categoryItems', category_id = i.id)}}'> Cancel </a>
+
+
+</body>
+</html>
