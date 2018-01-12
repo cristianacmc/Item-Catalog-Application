@@ -18,7 +18,7 @@ session = DBSession()
 
 #Show all categories 
 @app.route('/')
-@app.route('/categories/')
+@app.route('/category/')
 def showCategories():
 	categories = session.query(Category).all()
 	return render_template('category.html', category = categories )
@@ -34,7 +34,9 @@ def categoryItems(category_id):
 #Shows the description of the item
 @app.route('/category/<int:category_id>/<int:item_id>')
 def ItemsDescription(category_id, item_id):
-	return "shows the information of the item"
+	item = session.query(CategoryItem).filter_by(id=item_id).one()
+	return render_template('description.html', item=item)
+
 
 
 #Add a new item info

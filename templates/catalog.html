@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>catalog</title>
+	<title>Sports Modality</title>
 </head>
 <body>
-	<h1>{{ category.name }}</h1>
+	<h2>{{category.name}}</h2>
 
-	{% for i in items %}
-
-	<a href="#">{{ i.name }}</a>
-
-</br>
-	{% endfor %}	
+		{% for i in items%}
+		<a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
+		{{ i.name}}
+		</a>
+	    </br>
+		{% endfor%}
 
 </body>
-
+</html>
 
 
