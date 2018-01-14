@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+import datetime
 
-from database import Category, CategoryItem, Base
+from database import *
 
 engine = create_engine('sqlite:///catalog.db')
 # Bind the engine to the metadata of the Base class so that the
@@ -68,14 +69,18 @@ category1 = Category(name="Skating")
 session.add(category1)
 session.commit()
 
-categoryitem1 = CategoryItem(name="Outdoor Skates", description="These skates are simply meant for the outdoors. Outdoor skates come in either low top or high top boots and the wheels are specifically designed to skate outdoors where the ground is not as smooth.",
-					category = category1)
+categoryitem1 = CategoryItem(name="Outdoor Skates",
+							  description ="These skates are simply meant for the outdoors. Outdoor skates come in either low top or high top boots and the wheels are specifically designed to skate outdoors where the ground is not as smooth.",
+							  create_date = datetime.datetime.now(),
+							  category = category1)
 
 session.add(categoryitem1)
 session.commit()
 
-categoryitem2 = CategoryItem(name="Indoor Skates", description="These are traditional style skates that are for those wanting to skate in a skating rink, artistically dance, and those that want to rhythm skate.",
-					category = category1)
+categoryitem2 = CategoryItem(name="Indoor Skates",
+							  description="These are traditional style skates that are for those wanting to skate in a skating rink, artistically dance, and those that want to rhythm skate.",
+					          create_date = datetime.datetime.now(),
+					          category = category1)
 
 session.add(categoryitem2)
 session.commit()
@@ -87,8 +92,10 @@ category1 = Category(name="Hockey")
 session.add(category1)
 session.commit()
 
-categoryitem1 = CategoryItem(name="Bandy", description="Bandy is played with a ball on a football pitch-sized ice arena (bandy rink), typically outdoors, and with many rules similar to association football.",
-					category = category1)
+categoryitem1 = CategoryItem(name="Bandy", 
+	                          description="Bandy is played with a ball on a football pitch-sized ice arena (bandy rink), typically outdoors, and with many rules similar to association football.",
+					          create_date = datetime.datetime.now(),
+					          category = category1)
 
 session.add(categoryitem1)
 session.commit()

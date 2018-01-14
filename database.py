@@ -1,7 +1,9 @@
-from sqlalchemy import Column, ForeignKey, Integer, String
+from sqlalchemy import Column, ForeignKey, Integer, String, DateTime
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
+import datetime
+
  
 Base = declarative_base()
 
@@ -17,10 +19,12 @@ class CategoryItem(Base):
     __tablename__ = 'category_item'
 
     id = Column(Integer, primary_key = True)
-    name =Column(String(80), nullable = False)
+    name = Column(String(80), nullable = False)
+    create_date = Column(DateTime, nullable = False)
     description = Column(String(250))
     category_id = Column(Integer,ForeignKey('category.id'))
     category = relationship(Category)
+    
 
 
 engine = create_engine('sqlite:///catalog.db')
