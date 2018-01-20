@@ -6,6 +6,8 @@ from flask import url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database import Base, Category, CategoryItem
+from flask import session as login_session
+import random, string
 
 app = Flask(__name__)
 
@@ -15,6 +17,14 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
+@app.route('/login')
+def showLogin():
+    state = ''.join(random.choice(string.ascii_uppercase + string.digits)
+                    for x in xrange(32))
+    login_session['state'] = state
+    return "The current session state is %s" %login_session['state']
+
 
 #Show all categories 
 @app.route('/')
