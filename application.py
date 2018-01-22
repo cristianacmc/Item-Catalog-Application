@@ -207,7 +207,8 @@ def newItemInfo(category_id, item_id):
 	if 'username' not in login_session:
 		return redirect('/login')
 	if request.method == 'POST':
-		newInfo = CategoryItem(name = request.form['name'], category_id = category_id)
+		newInfo = CategoryItem(name = request.form['name'], category_id = category_id, 
+			user_id = login_session['user_id'])
 		session.add(newInfo)
 		session.commit()
 		return redirect(url_for('categoryItems', category_id = category_id))
@@ -215,12 +216,14 @@ def newItemInfo(category_id, item_id):
 		return render_template('addinfo.html', category_id = category_id, item_id = item_id)
 
 	
-
 #Update item information
 @app.route('/category/<int:category_id>/<int:item_id>/edit', methods = ['GET', 'POST'])
 def editItem(category_id, item_id):
 	if 'username' not in login_session:
 		return redirect('/login')
+	item = session.query(CategoryItem).filter_by(id=item_id).one()
+	if login_session['user_id'] != item.user_id:
+		return "<script>function myFunction() {alert('You are not authorized to edit this item. Please create your own Item in order to edit it.');}</script><body onload='myFunction()'>"
 	item = session.query(CategoryItem).filter_by(id = item_id).one()
 	if request.method == 'POST':
 		if request.form['name']:
