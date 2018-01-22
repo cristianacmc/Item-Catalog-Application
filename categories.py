@@ -19,6 +19,12 @@ DBSession = sessionmaker(bind=engine)
 # session.rollback()
 session = DBSession()
 
+#Create User
+User1 = User(name="Cristiana Costa", email="cristianacmc@gmail.com",
+             picture='https://lh6.googleusercontent.com/-ugZkUxkqwbc/AAAAAAAAAAI/AAAAAAAAAcw/-SnX5O_Ng3s/photo.jpg')
+session.add(User1)
+session.commit()
+
 
 # Catalog for Soccer
 category1 = Category(name="Soccer")
@@ -69,7 +75,7 @@ category1 = Category(name="Skating")
 session.add(category1)
 session.commit()
 
-categoryitem1 = CategoryItem(name="Outdoor Skates",
+categoryitem1 = CategoryItem( user_id=1, name="Outdoor Skates",
 							  description ="These skates are simply meant for the outdoors. Outdoor skates come in either low top or high top boots and the wheels are specifically designed to skate outdoors where the ground is not as smooth.",
 							  create_date = datetime.datetime.now(),
 							  category = category1)
@@ -77,7 +83,7 @@ categoryitem1 = CategoryItem(name="Outdoor Skates",
 session.add(categoryitem1)
 session.commit()
 
-categoryitem2 = CategoryItem(name="Indoor Skates",
+categoryitem2 = CategoryItem( user_id=1, name="Indoor Skates",
 							  description="These are traditional style skates that are for those wanting to skate in a skating rink, artistically dance, and those that want to rhythm skate.",
 					          create_date = datetime.datetime.now(),
 					          category = category1)
