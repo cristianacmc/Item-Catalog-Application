@@ -10,19 +10,18 @@
 
 		<p>Name:</p>
 		<input type = 'text' size='30' name='name' placeholder = '{{i.name}}'>
-		<input type='submit' value='Edit'>
-
+		</br></br>
 
 		<p>Description:</p>
 		<input type = 'text' size='250' name='description' placeholder = "{{i.description}}">
-		<input type='submit' value='Edit'>
+		</br></br>
 
 		<p>Category:</p>
-		<input type = 'text' size='30' name='category' placeholder = "{{i.category}}">
-		<input type='submit' value='Edit'>		
+		<input type = 'text' size='30' name='category'">
+		</br></br>
 
-
-	<a href = '{{url_for('categoryItems', category_id = i.id)}}'> Cancel </a>
+		<input type='submit' value='Edit'>
+		<a href = '{{url_for('categoryItems', category_id = i.id)}}'> Cancel </a>
 
 
 </body>

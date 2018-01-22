@@ -204,6 +204,8 @@ def ItemsDescription(category_id, item_id):
 #Add a new item info
 @app.route('/category/<int:category_id>/<int:item_id>/new', methods=['GET', 'POST'])
 def newItemInfo(category_id, item_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	if request.method == 'POST':
 		newInfo = CategoryItem(name = request.form['name'], category_id = category_id)
 		session.add(newInfo)
@@ -217,6 +219,8 @@ def newItemInfo(category_id, item_id):
 #Update item information
 @app.route('/category/<int:category_id>/<int:item_id>/edit', methods = ['GET', 'POST'])
 def editItem(category_id, item_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	item = session.query(CategoryItem).filter_by(id = item_id).one()
 	if request.method == 'POST':
 		if request.form['name']:
@@ -236,6 +240,8 @@ def editItem(category_id, item_id):
 #Delete item information
 @app.route('/category/<int:category_id>/<int:item_id>/delete', methods = ['GET', 'POST'])
 def deleteCategoryItem(category_id, item_id):
+	if 'username' not in login_session:
+		return redirect('/login')
 	item = session.query(CategoryItem).filter_by(id = item_id).one()
 	if request.method == 'POST':
 		session.delete(item)
