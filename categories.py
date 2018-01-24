@@ -98,7 +98,7 @@ category1 = Category(name="Hockey")
 session.add(category1)
 session.commit()
 
-categoryitem1 = CategoryItem(name="Bandy", 
+categoryitem1 = CategoryItem( user_id=1, name="Bandy", 
 	                          description="Bandy is played with a ball on a football pitch-sized ice arena (bandy rink), typically outdoors, and with many rules similar to association football.",
 					          create_date = datetime.datetime.now(),
 					          category = category1)
