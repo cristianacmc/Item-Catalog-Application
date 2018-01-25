@@ -4,18 +4,15 @@
 	<title>sports category</title>
 </head>
 <body>
+	
 	{% for c in category %}
-
-	<a href = "{{url_for('categoryItems', category_id = c.id)}}">
-		<h3>{{c.name}}</h3>
-	</a>
-
-    </br>
-
+	 <a href = "{{url_for('categoryItems', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
 	{% endfor %}
 
 </body>
 </html>
+
+
 
 
 	

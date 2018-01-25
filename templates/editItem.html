@@ -6,23 +6,30 @@
 <body>
 	<h1>Edit Modality</h1>
 
-	<forn action= "{{ url_for('editItem', category_id = category_id, item_id = i.id)}}" method= 'post'>
+	<forn action= "{{ url_for('editItem', category_id = category_id, item_id = item_id)}}" 
+	method = 'POST'>	
 
 		<p>Name:</p>
-		<input type = 'text' size='30' name='name' placeholder = '{{i.name}}'>
+		<input type = 'text' size='30' name='name'  placeholder = '{{i.name}}'>
 		</br></br>
 
 		<p>Description:</p>
 		<input type = 'text' size='250' name='description' placeholder = "{{i.description}}">
 		</br></br>
 
-		<p>Category:</p>
-		<input type = 'text' size='30' name='category'">
+		<p><strong>Category:</strong></p>
+		<select name="category">
+			{% for i in c %}
+			<option value = "{{i.name}}">{{i.name}}</option>
+			{% endfor %}
+		</select>
 		</br></br>
-
-		<input type='submit' value='Edit'>
-		<a href = '{{url_for('categoryItems', category_id = i.id)}}'> Cancel </a>
-
-
+	
+		<a href = "{{url_for('ItemsDescription', category_id=i.category_id, item_id=i.id)}}">
+			<input type='submit' value='submit'></a>
+	    </br></br>
+		<a href = "{{url_for('categoryItems', category_id = category_id)}}"> 
+		Cancel</a>
+	</forn>		
 </body>
 </html>
