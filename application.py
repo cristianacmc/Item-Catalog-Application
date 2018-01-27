@@ -262,7 +262,7 @@ def fbdisconnect():
     h = httplib2.Http()
     result = h.request(url, 'DELETE')[1]
     return "you have been logged out"
-            
+
 
 #Show all categories 
 @app.route('/')

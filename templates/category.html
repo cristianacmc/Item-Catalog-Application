@@ -9,6 +9,13 @@
 	 <a href = "{{url_for('categoryItems', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
 	{% endfor %}
 
+	{% if username not in session %}
+	<a href="{{url_for('showLogin')}}">Click Here to Login</a>
+	{% else %}
+	<a href="{{url_for('disconnect')}}">Disconnect</a>
+	{% endif %}	
+
+
 </body>
 </html>
 
