@@ -5,37 +5,20 @@
 </head>
 <body>
 	<h1>New Sport Modality</h1>
-	<div>
-		
+    <h2><strong>{{ category.name }}</strong></h2>
+	<form action="{{url_for('newCategoryItem', category_id=category.id)}}" method = 'post'>
+	
 		<label for="name">Name:</label>
 		<input type ="text" maxlength="80"  name="name" placeholder="Name of the modality">
 
 		<label for="description">Description:</label>
-		<input type ="text" maxlength="250"  name="name" placeholder="Description of the modality">
+		<input type ="text" maxlength="250"  name="description" placeholder="Description of the modality">
+		<br><br>
+	<input type="submit" value="Create">
+	</form>
 
-		<label for="category_id">Category Code:</label>
-		<input type ="text" maxlength="250"  name="category_id">
 
-		<label for="date">Date:</label>
-		<input type ="text" maxlength="20"  name="Date">		
-	</div>
 
-	<p><strong>Category:</strong></p>
-	<select>
-	  <option label="Soccer"></option>
-	  <option label="Basketball"></option>
-	  <option label="Baseball"></option>
-	  <option label="Frisbee"></option>
-	  <option label="Snowboarding"></option>
-	  <option label="Rock Climbing"></option>
-	  <option label="Foosball"></option>
-	  <option label="Skating"></option>
-	  <option label="Hockey"></option>
-	</select>
-	</br></br>
-
-	<input type="submit" name="Create">
-	</div>
 
 </body>
 </html>

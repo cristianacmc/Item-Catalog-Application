@@ -33,7 +33,7 @@ class CategoryItem(Base):
 
     id = Column(Integer, primary_key = True)
     name = Column(String(80), nullable = False)
-    create_date = Column(DateTime, nullable = False)
+    date = Column(DateTime, nullable = False)
     description = Column(String(250))
     category_id = Column(Integer,ForeignKey('category.id'))
     category = relationship(Category)

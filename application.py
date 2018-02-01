@@ -15,7 +15,9 @@ from oauth2client.client import FlowExchangeError
 import httplib2
 import json
 from flask import make_response
-import requests
+import requests, datetime, os
+
+
 
 app = Flask(__name__)
 
@@ -275,7 +277,7 @@ def showCategories():
 @app.route('/category/<int:category_id>/')
 def categoryItems(category_id):
 	category = session.query(Category).filter_by(id = category_id).one()
-	items = session.query(CategoryItem).filter_by(category_id = category_id).all()
+	items = session.query(CategoryItem).filter_by(category_id = category.id).all()
 	if 'username' not in login_session:
 		return render_template('catalog.html', category=category, items=items)
 	else:
@@ -289,20 +291,21 @@ def newCategoryItem(category_id):
 	creator = session.query(User) .filter_by(email=login_session['email'])
 	if 'username' not in login_session:
 		return redirect('/login')
-	if request.method == 'POST':
-		newItem = CategoryItem(
-			name = request.form['name'],
-    		category_id = request.form['category_id'], 
-    		date= request.form['date'],
-    		user_id = login_session['user_id'],
-    		description = request.form['description'],
-    		category = request.form['category'])
-		session.add(newItem)
-		session.commit()
-		flash('New Modality %s Successfully Created' % newItem.name)		
-		return redirect(url_for('categoryItems', category_id=category_id))
 	else:
-		return render_template('newItem.html', category_id=category_id)
+		if request.method == 'POST':
+			newItem = CategoryItem(
+				name = request.form['name'],
+				category_id = category.id,
+				user_id = login_session['user_id'],
+				date = datetime.datetime.now(),
+				description = request.form['description'],
+				category = category)
+			session.add(newItem)
+			session.commit()
+			flash('New Modality %s Successfully Created' % newItem.name)		
+			return redirect(url_for('categoryItems', category_id=category.id))
+		else:
+			return render_template('newItem.html', category=category)
 
 	
 
@@ -339,7 +342,7 @@ def editItem(category_id, item_id):
 		item.date = time
 		session.add(item)
 		session.commit()
-		flash('Menu Item Successfully Edited')
+		flash('Modality Successfully Edited')
 		return redirect(url_for('ItemsDescription', category_id=category.id, item_id=item.id))
 	else:
 		categories = session.query(Category).all()
@@ -359,6 +362,7 @@ def deleteCategoryItem(category_id, item_id):
 	if request.method == 'POST':
 		session.delete(item)
 		session.commit()
+		flash("Modality has been deleted")
 		return redirect(url_for('categoryItems', category_id = category_id))
 	else:
 		return render_template('deleteItem.html', item = item)

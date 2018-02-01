@@ -20,73 +20,65 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 #Create User
-User1 = User(name="Cristiana Costa", email="cristianacmc@gmail.com",
+'''User1 = User(name="Cristiana Costa", email="cristianacmc@gmail.com",
              picture='https://lh6.googleusercontent.com/-ugZkUxkqwbc/AAAAAAAAAAI/AAAAAAAAAcw/-SnX5O_Ng3s/photo.jpg')
 session.add(User1)
-session.commit()
+session.commit()'''
 
 
 # Catalog for Soccer
-category1 = Category(name="Soccer")
-
-session.add(category1)
+soccer = Category(name="Soccer")
+session.add(soccer)
 session.commit()
 
 
 # Catalog for Basketball
-category1 = Category(name="Basketball")
-
-session.add(category1)
+basketball = Category(name="Basketball")
+session.add(basketball)
 session.commit()
 
 # Catalog for Baseball
-category1 = Category(name="Baseball")
-
-session.add(category1)
+baseball = Category(name="Baseball")
+session.add(baseball)
 session.commit()
 
 # Catalog for Frisbee
-category1 = Category(name="Frisbee")
-
-session.add(category1)
+frisbee = Category(name="Frisbee")
+session.add(frisbee)
 session.commit()
 
 # Catalog for Snowboarding
-category1 = Category(name="Snowboarding")
-
-session.add(category1)
+snowboarding = Category(name="Snowboarding")
+session.add(snowboarding)
 session.commit()
 
 # Catalog for Rock Climbing
-category1 = Category(name="Rock Climbing")
-
-session.add(category1)
+climbing = Category(name="Rock Climbing")
+session.add(climbing)
 session.commit()
 
 # Catalog for Foosball
-category1 = Category(name="Foosball")
-
-session.add(category1)
+foosball = Category(name="Foosball")
+session.add(foosball)
 session.commit()
 
 # Catalog for Skating
-category1 = Category(name="Skating")
-
-session.add(category1)
+skating = Category(name="Skating")
+session.add(skating)
 session.commit()
 
-categoryitem1 = CategoryItem( user_id=1, name="Outdoor Skates",
+'''categoryitem1 = CategoryItem( user_id=1, name="Outdoor Skates",
 							  description ="These skates are simply meant for the outdoors. Outdoor skates come in either low top or high top boots and the wheels are specifically designed to skate outdoors where the ground is not as smooth.",
-							  create_date = datetime.datetime.now(),
-							  category = category1)
+							  date = datetime.datetime.now(),
+							  category = skating)
 
 session.add(categoryitem1)
 session.commit()
 
 categoryitem2 = CategoryItem( user_id=1, name="Indoor Skates",
 							  description="These are traditional style skates that are for those wanting to skate in a skating rink, artistically dance, and those that want to rhythm skate.",
-					          create_date = datetime.datetime.now(),
-					          category = category1)
+					          date = datetime.datetime.now(),
+					          category = skating)
 
 session.add(categoryitem2)
 session.commit()
@@ -100,10 +92,10 @@ session.commit()
 
 categoryitem1 = CategoryItem( user_id=1, name="Bandy", 
 	                          description="Bandy is played with a ball on a football pitch-sized ice arena (bandy rink), typically outdoors, and with many rules similar to association football.",
-					          create_date = datetime.datetime.now(),
-					          category = category1)
+					          date = datetime.datetime.now(),
+					          category = climbing)
 
 session.add(categoryitem1)
-session.commit()
+session.commit()'''
 
 print "added menu items!"
