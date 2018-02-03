@@ -329,26 +329,23 @@ def editItem(category_id, item_id):
 	if 'username' not in login_session:
 		return redirect('/login')
 	if creator.id != login_session['user_id']:
-		return "<script>function myFunction() {alert('You are not authorized to edit this item. Please create your own Item in order to edit it.');}</script><body onload='myFunction()'>"
+		return "You do not have permission to edit this item. Please create your own Item in order to edit it."
 	if request.method == 'POST':
 		if request.form['name']:
 			item.name = request.form['name']
 		if request.form['description']:
 			item.description = request.form['description']
-		if request.form['Category']:
+		date = datetime.datetime.now(),
+		'''if request.form['Category']:
 			category = session.query(Category).filter_by(name=request.form['category']).one()
-			item.category = category
-		time = datetime.datetime.now()
-		item.date = time
+			item.category = category'''
 		session.add(item)
 		session.commit()
 		flash('Modality Successfully Edited')
 		return redirect(url_for('ItemsDescription', category_id=category.id, item_id=item.id))
 	else:
-		categories = session.query(Category).all()
-		return render_template('editItem.html', category_id=category.id, item_id=item.id, i=item, c=categories)
+		return render_template('editItem.html', i=item)
 		
-
 
 #Delete item information
 @app.route('/category/<int:category_id>/<int:item_id>/delete', methods = ['GET', 'POST'])
