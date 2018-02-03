@@ -255,7 +255,7 @@ def fbconnect():
     return output
 
 
-@app.route('/fbdisconnect')
+@app.route('/c')
 def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
@@ -288,7 +288,6 @@ def categoryItems(category_id):
 @app.route('/category/<int:category_id>/new', methods=['GET', 'POST'])
 def newCategoryItem(category_id):
 	category = session.query(Category).filter_by(id=category_id).one()
-	creator = session.query(User) .filter_by(email=login_session['email'])
 	if 'username' not in login_session:
 		return redirect('/login')
 	else:
@@ -363,6 +362,18 @@ def deleteCategoryItem(category_id, item_id):
 		return redirect(url_for('categoryItems', category_id = category_id))
 	else:
 		return render_template('deleteItem.html', item = item)
+
+
+#Making an API Endpoint(GET Request)
+@app.route('/category/JSON')
+def showCategoriesJSON():
+    category = session.query(Category).all()
+    return jsonify(Category=[i.serialize for i in category])
+
+@app.route('/category/<int:category_id>/JSON')
+def categoryItemsJSON(category_id):
+    items = session.query(CategoryItem).filter_by(category_id = category_id).all()
+    return jsonify(CategoryItem=[i.serialize for i in items])
 
 		
 if __name__ == '__main__':
