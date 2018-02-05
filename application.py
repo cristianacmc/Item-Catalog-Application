@@ -19,7 +19,8 @@ import requests, datetime, os
 
 
 
-app = Flask(__name__)
+app = Flask(__name__,
+    static_folder='static')
 
 CLIENT_ID = json.loads(
 	open('client_secrets.json', 'r').read())['web']['client_id']
@@ -271,7 +272,7 @@ def fbdisconnect():
 @app.route('/category/')
 def showCategories():
 	categories = session.query(Category).all()
-	return render_template('category.html', category = categories )
+	return render_template('category.html', categories = categories )
 
 #List all items in a specific category
 @app.route('/category/<int:category_id>/')

@@ -1,20 +1,61 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>sports category</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sports Modality</title>
+    <!--<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">-->
+    <link href="https://fonts.googleapis.com/css?family=Anton|Oswald:400,500,600,700|Saira+Condensed:600,700" rel="stylesheet">    
+    <link rel="stylesheet" href="static/css/lib/bootstrap.css">
+	<link rel="stylesheet" href="static/css/style.css">
 </head>
+
 <body>
 	
-	{% for c in category %}
-	 <a href = "{{url_for('categoryItems', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
-	{% endfor %}
+	<div class="container">
+		<div class="row content-header bordered_b">
+			<div class="col-md-6 text-left">
+				<h1 class="title text-uppercase">Sports Modality</h1>
+			</div>
+			<div class="col-md-6">
+				<img class="pull-right logo" src="static/images/logo.jpg" alt="logo sports">
+			</div>
+		</div>
+	
+		<div class="row">
+			<div class="col-md-12 text-right">
+				{% if username not in session %}
+				 <a href="{{url_for('showLogin')}}">Click Here to Login</a>
+				{% else %}
+				 <a href="{{url_for('disconnect')}}">Disconnect</a>
+				{% endif %}
+			</div>
 
-	{% if username not in session %}
-	<a href="{{url_for('showLogin')}}">Click Here to Login</a>
-	{% else %}
-	<a href="{{url_for('disconnect')}}">Disconnect</a>
-	{% endif %}	
+			<div class="row">
+			<div class="col-md-3 cats bordered_r">
+				{% for c in categories %}
+				 <a href = "{{url_for('categoryItems', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
+				{% endfor %}
+			</div>
 
+			<div class="col-md-6">				
+				{% for i in items%}
+				 <a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">{{ i.name}}</a></br>
+				{% endfor %}
+  
+		    </div>
+
+		    <div class="col-md-3">
+		    </div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-12">
+			</div>
+		</div>
+
+	</div>	
 
 </body>
 </html>

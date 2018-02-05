@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sports Modality</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
@@ -16,14 +20,13 @@
 	{% endwith %}
 
 
-	<h2>{{category.name}}</h2>
-	{% for i in items%}
-	 <a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
-	 {{ i.name}}</a>
-	 </br></br>
-	{% endfor %}
+		<h2>{{category.name}}</h2>
+			{% for i in items%}
+			 <a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
+			 	{{ i.name}}</a></br>
+			{% endfor %}
+		<a href = "{{url_for('showCategories')}}">Back</a>
 
-	<a href = "{{url_for('showCategories')}}">Back</a>
 
 
 </body>
