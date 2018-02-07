@@ -1,28 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>edit item</title>
-</head>
-<body>
+	
+	{% extends "base.html" %}
+    {% block title %}new modality{% endblock title %}
+	{% block content %}
+	
+	<form class="content-body">
+
 	<h1>Edit Modality</h1>
+	</br>			
+		<form action= "{{url_for('editItem', category_id = i.category_id, item_id = i.id)}}" 
+		method = 'post'>
+		
+		<div class="form-group">
+			<label for="name">Name:</label>
+			 <input type='text' name='name' class="form-control" id="name" value="{{i.name}}" >
+    	</div>
+		</br>
+    	
+    	<div class="form-group">
+    		<label for="description">Description:</label>
+            <textarea name="description" id="description" class="form-control" maxlength="250" cols="30" rows="2">{{i.description}}</textarea></br>
+        </div>
 
-	<form action= "{{ url_for('editItem', category_id = i.category_id, item_id = i.id)}}" 
-	method = 'POST'>	
-
-		<p>Name:</p>
-		<input type = 'text' size='30' name='name'  placeholder = '{{i.name}}' value='{{i.name}}'>
-		</br></br>
-
-		<p>Description:</p>
-		<input type = 'text' size='250' name='description' value='{{i.description}}'>
-		</br></br>
-
-		<input type='submit' value='Edit'>
+        <div class="form-group">
+        	<button class="btn btn-success" type="submit" value="submit">Submit</button>
+        	</br></br></br>
+        	<a href="{{url_for('showCategories')}}" class="btn btn-default btn-sm"> 
+        		<span class="glyphicon glyphicon-arrow-left"></span> Back</a>	
+        </div>
+        
 	</form>		
 
-		
-	</br></br>
-	<a href = "{{url_for('categoryItems', category_id = i.category_id)}}">Cancel</a>
-	
-</body>
-</html>
+	{% endblock %}
+

@@ -13,13 +13,16 @@
 	margin: 10px 0px 0px -15px;
 }
 
+.content-header a{
+	text-decoration: none;
+}
+
 .bordered_b {
   border-bottom: 4px solid #696969;
 }
 
 .cats{
 	font-family: 'Saira Condensed', sans-serif; 
-	
 	font-weight: 600;	
 }
 
@@ -31,4 +34,26 @@
 	width: 40%;	
 	margin-right: -15px;
 	margin-top: -19px;
+}
+
+.titlecat{
+	font-family: 'Oswald', sans-serif;
+	font-weight: 400;
+}
+.namemod{
+	font-size: 20px;
+}
+.content-body{
+		padding: 20px 0px 0px 0px;
+		margin: 10px 0px 0px -15px;
+}
+
+.newmod{
+	font-weight: bold;
+}
+
+.descrip{
+	color: #337ab7;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 18px;
 }

@@ -5,8 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE-edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>{% block title %}{% endblock title %}</title>
-    <link href="https://fonts.googleapis.com/css?family=Anton|Oswald:400,500,600,700|Saira+Condensed:600,700" rel="stylesheet">    
-    <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Anton|Oswald:400,500,600,700|Saira+Condensed:600,700" rel="stylesheet"> 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.css') }}">-->
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 
@@ -15,7 +18,10 @@
 	<div class="container">
 		<div class="row content-header bordered_b">
 			<div class="col-md-6 text-left">
-				<h1 class="title text-uppercase">Sports Modality</h1>
+				<a href="{{url_for('showCategories')}}"><h1 class="title text-uppercase">Sports Modality
+					</h1>
+				</a>
+				
 			</div>
 			<div class="col-md-6">
 				<img class="pull-right logo" src="/static/images/logo.jpg" alt="logo sports">

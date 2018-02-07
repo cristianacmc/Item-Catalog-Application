@@ -1,22 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Sports Modality</title>
-</head>
-<body>
-	
-	<a href = "{{url_for('newCategoryItem', category_id = category.id)}}">
-	 	<h3>New modality</h3>
-	</a>
-	
-	<h2>{{category.name}}</h2>
-	{% for i in items%}
-	 <a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
-	 {{ i.name}}</a>
-	 </br></br>
-	{% endfor %}
-	<a href = "{{url_for('showCategories')}}">Back</a>
+	{% extends "base.html" %}
+    {% block title %}Sports Modality{% endblock title %}
+	{% block content %}
 
-</body>
-</html>
+	
+	<div class="row content-body">
+		<div class="col-md-6 text-left">
+			<h2 class="titlecat text-uppercase">{{category.name}}</h2></br>
+			{% for i in items%}
+			<div class="namemod">
+				<a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">{{ i.name}}</a></br></br>
+			</div>
+			{% endfor %}			
+		</div>
+		<div class="col-md-6">
+			<a class="btn btn-warning pull-right newmod" href="{{url_for('newCategoryItem', category_id = category.id)}}" role="button">New Modality</a>
+		</div>
+	</div>
+    {% endblock %}
+
+
 
