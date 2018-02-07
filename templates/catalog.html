@@ -1,34 +1,14 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE-edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Sports Modality</title>
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-
-	{% with messages = get_flashed_messages() %}
-		{% if messages %}
-		<ul>
-			{% for message in messages %}
-				<li> <strong> {{message}} </strong></li>
-			{% endfor %}
-		</ul>
-		{% endif %}
-	{% endwith %}
-
-
-		<h2>{{category.name}}</h2>
-			{% for i in items%}
-			 <a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
-			 	{{ i.name}}</a></br>
-			{% endfor %}
-		<a href = "{{url_for('showCategories')}}">Back</a>
-
-
-
-</body>
-</html>
-
+	
+	{% extends "base.html" %}
+	{% block title %}Modalities Sports{% endblock title %}
+	{% block content %}
+		<div class="row">			
+			<div class="col-md-12 cats">
+				<h2>{{category.name}}</h2>
+				 {% for i in items%}
+				  <a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}"><h3>{{ i.name}}</h3></a>
+				 {% endfor %}
+				 <a href = "{{url_for('showCategories')}}">Back</a>
+			</div>
+		</div>
+	{% endblock %}

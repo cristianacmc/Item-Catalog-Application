@@ -5,22 +5,21 @@ from flask import redirect
 from flask import jsonify
 from flask import url_for
 from flask import flash
+from flask import make_response
+from flask import session as login_session
 from sqlalchemy import create_engine
+from sqlalchemy import desc
 from sqlalchemy.orm import sessionmaker
 from database import *
-from flask import session as login_session
 import random, string
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 import httplib2
 import json
-from flask import make_response
 import requests, datetime, os
 
 
-
-app = Flask(__name__,
-    static_folder='static')
+app = Flask(__name__)
 
 CLIENT_ID = json.loads(
 	open('client_secrets.json', 'r').read())['web']['client_id']
@@ -32,6 +31,7 @@ Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
 session = DBSession()
+
 
 @app.route('/login')
 def showLogin():
@@ -271,8 +271,9 @@ def fbdisconnect():
 @app.route('/')
 @app.route('/category/')
 def showCategories():
-	categories = session.query(Category).all()
-	return render_template('category.html', categories = categories )
+    categories = session.query(Category).all()
+    #items = session.query(categoryItems).order_by(categoryItems.date.desc()).all()
+    return render_template('category.html', categories = categories)
 
 #List all items in a specific category
 @app.route('/category/<int:category_id>/')

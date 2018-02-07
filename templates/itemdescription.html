@@ -1,22 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>sport description</title>
-</head>
 
-<body>
-	<h2>{{ category.name}}</h2>
-	</br>
-	<h3>{{ item.name}}</h3>
-	<p>{{ item.description }}<p>
-	</br>
-	<a href = "{{url_for('deleteCategoryItem', category_id = category.id, item_id = item.id)}}">
-		Delete
-	</a>
-	
-
-</body>
-</html>
-
+	{% extends "base.html" %}
+	{% block title %}Modality Description{% endblock title %}
+	{% block content %}
+		<div class="row">
+			<div class="col-md-12 cats">
+				<h2>{{ category.name}}</h2>
+			    </br>
+			    <h3>{{ item.name}}</h3>
+				<p>{{ item.description }}<p>
+    			</br>
+    		</div>
+		</div>
+	{% endblock %}
 
 

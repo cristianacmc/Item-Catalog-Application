@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE-edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% block title %}{% endblock title %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Anton|Oswald:400,500,600,700|Saira+Condensed:600,700" rel="stylesheet">    
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.css') }}">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+	
+	<div class="container">
+		<div class="row content-header bordered_b">
+			<div class="col-md-6 text-left">
+				<h1 class="title text-uppercase">Sports Modality</h1>
+			</div>
+			<div class="col-md-6">
+				<img class="pull-right logo" src="/static/images/logo.jpg" alt="logo sports">
+			</div>
+		</div>
+	
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+			{% for message in messages %}
+				<li> <strong> {{message}} </strong></li>
+			{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+
+		{% block content %}
+		{% endblock %}
+
+		<div class="row">
+			<div class="col-md-12">
+			</div>
+		</div>
+
+	</div>	
+
+</body>
+</html>
+
+
+
+
+	
