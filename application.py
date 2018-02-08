@@ -271,19 +271,19 @@ def fbdisconnect():
 @app.route('/')
 @app.route('/category/')
 def showCategories():
-    categories = session.query(Category).all()
-    #items = session.query(categoryItems).order_by(categoryItems.date.desc()).all()
-    return render_template('category.html', categories = categories)
+    categories = session.query(Category).all()    
+    latestI = session.query(CategoryItem).order_by(CategoryItem.date)
+    return render_template('category.html', categories = categories, latests=latestI)
 
 #List all items in a specific category
 @app.route('/category/<int:category_id>/')
 def categoryItems(category_id):
-	category = session.query(Category).filter_by(id = category_id).one()
-	items = session.query(CategoryItem).filter_by(category_id = category.id).all()
-	if 'username' not in login_session:
-		return render_template('catalog.html', category=category, items=items)
-	else:
-		return render_template('privatecatalog.html', category=category, items=items)
+    category = session.query(Category).filter_by(id = category_id).one()
+    items = session.query(CategoryItem).filter_by(category_id = category.id).all()
+    if 'username' not in login_session:
+        return render_template('catalog.html', category=category, items=items)
+    else:
+        return render_template('privatecatalog.html', category=category, items=items)
 
 
 #Add a new item info

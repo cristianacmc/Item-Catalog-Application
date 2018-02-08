@@ -2,7 +2,7 @@
 	{% extends "base.html" %}
     {% block title %}Sports Modality{% endblock title %}
 	{% block content %}
-		<div class="row">
+		<div class="row content-body">
 			<div class="col-md-12 text-right">
 				{% if username not in session %}
 				 <a href="{{url_for('showLogin')}}">Click Here to Login</a>
@@ -17,6 +17,13 @@
 				 <a href = "{{url_for('categoryItems', category_id = c.id)}}"><h3>{{c.name}}</h3></a>
 				{% endfor %}
 			</div>
+			<div class="col-md-9 cats">
+				<h2 class="text-center">Latest Modalities </h2>
+				{% for l in latests %}
+				 <h3>{{l.name}}</h3>
+				 <p>{{l.date}}</p></br>
+				{% endfor %}
+			</div>			
 		</div>
 	{% endblock %}
 
