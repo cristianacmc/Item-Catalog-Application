@@ -1,15 +1,16 @@
+
+
 .title{
 	font-family: 'Saira Condensed', sans-serif;
 	color: #8CFA05;
 	font-weight: 700;
 	margin-left: 15px;
-	font-size: 2.5em;
-
+	font-size: 1.5em;
 }
 
 .content-header{
 	background-color: black;
-	padding: 20px 0px 0px 0px;
+	padding: 0px 0px 0px 0px;
 	margin: 10px 0px 0px -15px;
 }
 
@@ -23,26 +24,35 @@
 
 .cats{
 	font-family: 'Saira Condensed', sans-serif; 
-	font-weight: 600;	
-}
-
-.bordered_r {
-  border-right: 1px solid #696969;
+	font-weight: 600;
+	margin-top: 35px;
+    margin-bottom: 50px;
+    padding-right: 60px;
 }
 
 .logo {
 	width: 40%;	
 	margin-right: -15px;
-	margin-top: -19px;
+	margin-top: -63px;
 }
 
 .titlecat{
 	font-family: 'Oswald', sans-serif;
 	font-weight: 400;
 }
+
+.latest{
+	font-family: 'Oswald', sans-serif;
+	font-weight: 600;
+	margin-top: 20px;
+	color: #0084b4;
+	font-size: 1.5;
+}
+
 .namemod{
 	font-size: 20px;
 }
+
 .content-body{
 		padding: 20px 0px 0px 0px;
 		margin: 10px 0px 0px -15px;
@@ -57,3 +67,48 @@
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 18px;
 }
+
+.main{
+	margin-top: 45px;
+}
+
+.content-body{
+	padding-top: 0px;
+	margin-top: 0px;
+	margin-left: -30px;
+	margin-right: -15px;
+}
+
+.catli{
+	list-style-type: none;
+	margin-top: 20px;
+}
+
+/* footer */
+
+
+.rodape {
+  width: 100%;
+  font-size: 1em;
+  background-color: #000;
+  opacity: .9;
+  bottom: 0;
+  height: 5em; 
+  margin-top: 10px;
+  margin-right: -15px;
+  border-radius:4px;
+
+}
+
+.rodape address {   
+   padding: 10px 0 0 4px;
+   margin-bottom: 0px;
+}
+
+.rodape p {
+   padding: 25px 0 10px 25px;
+
+}
+
+
+

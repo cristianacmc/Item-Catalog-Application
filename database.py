@@ -3,6 +3,8 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
+
+
  
 Base = declarative_base()
 
@@ -19,7 +21,9 @@ class Category(Base):
    
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
- 
+    picture = Column(String(250))
+
+
     @property
     def serialize(self):
       #Return object data in easily serializeable format

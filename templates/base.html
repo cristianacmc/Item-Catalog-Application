@@ -9,24 +9,28 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>   
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <!--<link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap.css') }}">-->
     <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" type=text/css href="{{ url_for('static', filename='responsive.css') }}">
 </head>
 
 <body>
 	
 	<div class="container">
 		<div class="row content-header bordered_b">
-			<div class="col-md-6 text-left">
+			<div class="col-md-6 title text-left">
 				<a href="{{url_for('showCategories')}}"><h1 class="title text-uppercase">Sports Modality
 					</h1>
 				</a>
 				
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6 pull-right">
 				<img class="pull-right logo" src="/static/images/logo.jpg" alt="logo sports">
 			</div>
 		</div>
+
+		
 	
 		{% with messages = get_flashed_messages() %}
 		{% if messages %}

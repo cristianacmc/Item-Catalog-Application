@@ -21,6 +21,7 @@ import requests, datetime, os
 
 app = Flask(__name__)
 
+
 CLIENT_ID = json.loads(
 	open('client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Catalog Application"
@@ -289,24 +290,24 @@ def categoryItems(category_id):
 #Add a new item info
 @app.route('/category/<int:category_id>/new', methods=['GET', 'POST'])
 def newCategoryItem(category_id):
-	category = session.query(Category).filter_by(id=category_id).one()
-	if 'username' not in login_session:
-		return redirect('/login')
-	else:
-		if request.method == 'POST':
-			newItem = CategoryItem(
-				name = request.form['name'],
-				category_id = category.id,
-				user_id = login_session['user_id'],
-				date = datetime.datetime.now(),
-				description = request.form['description'],
-				category = category)
-			session.add(newItem)
-			session.commit()
-			flash('New Modality %s Successfully Created' % newItem.name)		
-			return redirect(url_for('categoryItems', category_id=category.id))
-		else:
-			return render_template('newItem.html', category=category)
+    category = session.query(Category).filter_by(id=category_id).one()
+    if 'username' not in login_session:
+        return redirect('/login')
+    else:
+        if request.method == 'POST':
+            newItem = CategoryItem(
+                name = request.form['name'],
+                category_id = category.id,
+                user_id = login_session['user_id'],
+                date = datetime.datetime.now(),
+                description = request.form['description'],
+                category = category)
+            session.add(newItem)
+            session.commit()
+            flash('New Modality %s Successfully Created' % newItem.name)        
+            return redirect(url_for('categoryItems', category_id=category.id))
+        else:
+            return render_template('newItem.html', category=category)
 
 	
 
@@ -324,28 +325,28 @@ def ItemsDescription(category_id, item_id):
 #Update item information
 @app.route('/category/<int:category_id>/<int:item_id>/edit', methods = ['GET', 'POST'])
 def editItem(category_id, item_id):
-	category = session.query(Category).filter_by(id=category_id).one()
-	item = session.query(CategoryItem).filter_by(id=item_id).one()
-	creator = getUserInfo(item.user_id)
-	if 'username' not in login_session:
-		return redirect('/login')
-	if creator.id != login_session['user_id']:
-		return "You do not have permission to edit this item. Please create your own Item in order to edit it."
-	if request.method == 'POST':
-		if request.form['name']:
-			item.name = request.form['name']
-		if request.form['description']:
-			item.description = request.form['description']
-		date = datetime.datetime.now(),
-		'''if request.form['Category']:
-			category = session.query(Category).filter_by(name=request.form['category']).one()
-			item.category = category'''
-		session.add(item)
-		session.commit()
-		flash('Modality Successfully Edited')
-		return redirect(url_for('ItemsDescription', category_id=category.id, item_id=item.id))
-	else:
-		return render_template('editItem.html', i=item)
+    category = session.query(Category).filter_by(id=category_id).one()
+    item = session.query(CategoryItem).filter_by(id=item_id).one()
+    creator = getUserInfo(item.user_id)
+    if 'username' not in login_session:
+        return redirect('/login')
+    if creator.id != login_session['user_id']:
+        return "You do not have permission to edit this item. Please create your own Item in order to edit it."
+    if request.method == 'POST':
+        if request.form['name']:
+            item.name = request.form['name']
+        if request.form['description']:
+            item.description = request.form['description']
+        date = datetime.datetime.now(),
+        '''if request.form['Category']:
+            category = session.query(Category).filter_by(name=request.form['category']).one()
+            item.category = category'''
+        session.add(item)
+        session.commit()
+        flash('Modality Successfully Edited')
+        return redirect(url_for('ItemsDescription', category_id=category.id, item_id=item.id))
+    else:
+        return render_template('editItem.html', i=item)
 		
 
 #Delete item information
@@ -376,7 +377,7 @@ def showCategoriesJSON():
 def categoryItemsJSON(category_id):
     items = session.query(CategoryItem).filter_by(category_id = category_id).all()
     return jsonify(CategoryItem=[i.serialize for i in items])
-
+            
 		
 if __name__ == '__main__':
 	app.secret_key = 'super_secret_key'

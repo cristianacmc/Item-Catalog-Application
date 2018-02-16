@@ -1,0 +1,45 @@
+
+
+@media screen and (max-width: 636px) {
+
+
+	.title {
+		font-size: 1.2em;
+		margin-left: 0px;
+	}
+
+
+	.content-header{
+		height: 70%;
+	}
+
+	.logo {
+	margin-right: -15px;
+	margin-top: -51px;
+    }	
+
+}
+
+
+
+
+@media screen and (min-width: 992px) {
+
+	.title {
+		font-size: 1.6em;
+		margin-left: 0px;
+	}
+
+	.logo {
+	margin-right: -15px;
+	margin-top: 0px;
+	}
+
+	.bord{
+		border-right: 1px solid #696969;
+		opacity: 20%;
+    }
+
+
+
+}	

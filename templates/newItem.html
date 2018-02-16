@@ -6,8 +6,7 @@
 	</br>
     
 
-    <form>
-    	<form action="{{url_for('newCategoryItem', category_id=category.id)}}" method = 'post'>
+    <form action="{{url_for('newCategoryItem', category_id=category.id)}}" method = 'post'>
     	<div class="form-group">
     		<label for="name">Name:</label>
     		<input type ="text" name="name" class="form-control" id="name" placeholder="Modality Name">
@@ -21,11 +20,14 @@
         </br>
 
         <div class="form-group">
-            <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-            </br></br>
-
-            <a href = "{{url_for('showCategories')}}" class="btn btn-default btn-sm">
-             <span class="glyphicon glyphicon-arrow-left"></span> Cancel</a>
-		
+            <a class="btn btn-primary" type="submit" id="submit" href="{{url_for('categoryItems', category_id=category.id)}}" role="button">Submit</a>
+        </div>
+        </br></br>
+           
+        <div class="btn btn-default btn-sm">
+             <a href = "{{url_for('showCategories')}}">
+             <span class="glyphicon glyphicon-arrow-left"></span> 
+            </a>
+		</div>
 	</form>
 	{% endblock %}
