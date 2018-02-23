@@ -11,12 +11,15 @@ from sqlalchemy import create_engine
 from sqlalchemy import desc
 from sqlalchemy.orm import sessionmaker
 from database import *
+from login_dec import login_required
 import random, string
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.client import FlowExchangeError
 import httplib2
 import json
 import requests, datetime, os
+
+
 
 
 app = Flask(__name__)
@@ -132,7 +135,6 @@ def gconnect():
     output += '<img src="'
     output += login_session['picture']
     output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
-    flash("you are now logged in as %s" % login_session['username'])
     print "done!"
     return output  
 
@@ -157,7 +159,7 @@ def getUserID(email):
 		user = session.query(User).filter_by(email=email).one()
 		return user.id
 	except:
-		return None  
+		return None
 	
 
 #DISCONNECT - Revoke a current user's doken and reset their login_session
@@ -251,13 +253,13 @@ def fbconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ' " style = "width: 200px; height: 200px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
 
-    flash("Now logged in as %s" % login_session['username'])
+    #flash("Now logged in as %s" % login_session['username'])
     return output
 
 
-@app.route('/c')
+@app.route('/fbdisconnect')
 def fbdisconnect():
     facebook_id = login_session['facebook_id']
     # The access token must me included to successfully logout
@@ -268,12 +270,34 @@ def fbdisconnect():
     return "you have been logged out"
 
 
+# Disconnect based on provider
+@app.route('/disconnect')
+def disconnect():
+    if 'provider' in login_session:
+        if login_session['provider'] == 'google':
+            gdisconnect()
+            del login_session['gplus_id']
+            del login_session['access_token']
+        if login_session['provider'] == 'facebook':
+            fbdisconnect()
+            del login_session['facebook_id']
+        del login_session['username']
+        del login_session['email']
+        del login_session['picture']
+        del login_session['user_id']
+        del login_session['provider']
+        return redirect(url_for('showCategories'))
+    else:
+        flash("You were not logged in")
+        return redirect(url_for('showCategories'))
+
+
 #Show all categories 
 @app.route('/')
 @app.route('/category/')
 def showCategories():
     categories = session.query(Category).all()    
-    latestI = session.query(CategoryItem).order_by(CategoryItem.date)
+    latestI = session.query(CategoryItem).order_by(CategoryItem.date).limit(5)
     return render_template('category.html', categories = categories, latests=latestI)
 
 #List all items in a specific category
@@ -289,25 +313,23 @@ def categoryItems(category_id):
 
 #Add a new item info
 @app.route('/category/<int:category_id>/new', methods=['GET', 'POST'])
+@login_required
 def newCategoryItem(category_id):
     category = session.query(Category).filter_by(id=category_id).one()
-    if 'username' not in login_session:
-        return redirect('/login')
+    if request.method == 'POST':
+        newItem = CategoryItem(    
+            name = request.form['name'],
+            category_id = category.id,
+            user_id = login_session['user_id'],
+            date = datetime.datetime.now(),
+            description = request.form['description'],
+            category = category)
+        print(newItem)
+        session.add(newItem)
+        session.commit()
+        return redirect(url_for('categoryItems', category_id=category.id))
     else:
-        if request.method == 'POST':
-            newItem = CategoryItem(
-                name = request.form['name'],
-                category_id = category.id,
-                user_id = login_session['user_id'],
-                date = datetime.datetime.now(),
-                description = request.form['description'],
-                category = category)
-            session.add(newItem)
-            session.commit()
-            flash('New Modality %s Successfully Created' % newItem.name)        
-            return redirect(url_for('categoryItems', category_id=category.id))
-        else:
-            return render_template('newItem.html', category=category)
+        return render_template('newItem.html', category=category)
 
 	
 
@@ -324,12 +346,11 @@ def ItemsDescription(category_id, item_id):
 
 #Update item information
 @app.route('/category/<int:category_id>/<int:item_id>/edit', methods = ['GET', 'POST'])
+@login_required
 def editItem(category_id, item_id):
     category = session.query(Category).filter_by(id=category_id).one()
     item = session.query(CategoryItem).filter_by(id=item_id).one()
     creator = getUserInfo(item.user_id)
-    if 'username' not in login_session:
-        return redirect('/login')
     if creator.id != login_session['user_id']:
         return "You do not have permission to edit this item. Please create your own Item in order to edit it."
     if request.method == 'POST':
@@ -338,13 +359,10 @@ def editItem(category_id, item_id):
         if request.form['description']:
             item.description = request.form['description']
         date = datetime.datetime.now(),
-        '''if request.form['Category']:
-            category = session.query(Category).filter_by(name=request.form['category']).one()
-            item.category = category'''
         session.add(item)
         session.commit()
         flash('Modality Successfully Edited')
-        return redirect(url_for('ItemsDescription', category_id=category.id, item_id=item.id))
+        return redirect(url_for('categoryItems', category_id=category.id))
     else:
         return render_template('editItem.html', i=item)
 		

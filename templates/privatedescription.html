@@ -15,6 +15,14 @@
 
 	     		<!--Delete Item-->
 	     		<a href = "{{url_for('deleteCategoryItem', category_id = category.id, item_id=item.id)}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+	     	    </br></br>
+
+	     		<div class="btn btn-default btn-sm">
+	     			<a href = "{{url_for('showCategories')}}">
+	     	 		<span class="glyphicon glyphicon-arrow-left"></span> 
+	     	 		</a>
+	     	 	</div>
+
 	     	</div>
 	    </div>
 

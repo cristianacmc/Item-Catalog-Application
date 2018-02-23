@@ -18,7 +18,7 @@ class User(Base):
 
 class Category(Base):
     __tablename__ = 'category'
-   
+       
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
     picture = Column(String(250))
@@ -34,7 +34,7 @@ class Category(Base):
 
 class CategoryItem(Base):
     __tablename__ = 'category_item'
-
+    
     id = Column(Integer, primary_key = True)
     name = Column(String(80), nullable = False)
     date = Column(DateTime, nullable = False)

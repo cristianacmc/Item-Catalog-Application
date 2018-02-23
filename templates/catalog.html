@@ -8,7 +8,12 @@
 				 {% for i in items%}
 				  <a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}"><h3>{{ i.name}}</h3></a>
 				 {% endfor %}
-				 <a href = "{{url_for('showCategories')}}">Back</a>
+				
+		        <div class="btn btn-default btn-sm">
+		             <a href = "{{url_for('showCategories')}}">
+		             <span class="glyphicon glyphicon-arrow-left">Back</span> 
+		            </a>
+				</div>
 			</div>
 		</div>
 	{% endblock %}

@@ -18,6 +18,11 @@
 	margin-top: -51px;
     }	
 
+	.rodape p {
+	   padding: 0px 0 10px 25px;
+
+	}    
+
 }
 
 
@@ -40,6 +45,10 @@
 		opacity: 20%;
     }
 
+	.rodape p {
+	   padding: 25px 0 10px 25px;
+
+	}     
 
 
 }	

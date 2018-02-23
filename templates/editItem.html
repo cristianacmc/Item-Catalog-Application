@@ -3,11 +3,11 @@
     {% block title %}new modality{% endblock title %}
 	{% block content %}
 	
-	<form class="content-body">
+	
 
 	<h1>Edit Modality</h1>
 	</br>			
-		<form action= "{{url_for('editItem', category_id = i.category_id, item_id = i.id)}}" 
+	<form action= "{{url_for('editItem', category_id = i.category_id, item_id = i.id)}}" 
 		method = 'post'>
 		
 		<div class="form-group">
@@ -22,13 +22,18 @@
         </div>
 
         <div class="form-group">
-        	<button class="btn btn-success" type="submit" value="submit">Submit</button>
+        	<button class="btn btn-success" type="submit" id="submit">Submit</button>
         	</br></br></br>
-        	<a href="{{url_for('showCategories')}}" class="btn btn-default btn-sm"> 
-        		<span class="glyphicon glyphicon-arrow-left"></span> Back</a>	
         </div>
-        
-	</form>		
+     </form>	
+
+        <div class="btn btn-default btn-sm">
+             <a href = "{{url_for('showCategories')}}">
+             <span class="glyphicon glyphicon-arrow-left">Back</span> 
+            </a>
+		</div>
+ 		
 
 	{% endblock %}
+
 
