@@ -3,23 +3,24 @@
 	{% block title %}Modality Description{% endblock title %}
 	{% block content %}
 		<div class="row content-body">
-			<div class="col-md-12 cats">
-				
-				<h2 class="titlecat text-uppercase">{{ item.name}}</h2></br>
+			<div class="col-md-12">
+				<h2 class="titlecat text-uppercase text-center">{{item.name}}</h2></br>
 	     		<p class="descrip">{{ item.description }}</p></br>
 	     		
 	     		<!--Edit Item-->
+	     		
 	     		<a href = "{{url_for('editItem', category_id=category.id, item_id=item.id)}}"
-	     	     class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Edit 
+	     	     class="btn btn-default btn-sm btn-del btnedel"><span class="glyphicon glyphicon-edit"></span> Edit 
 	     	    </a>
 
 	     		<!--Delete Item-->
-	     		<a href = "{{url_for('deleteCategoryItem', category_id = category.id, item_id=item.id)}}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-remove"></span> Delete</a>
-	     	    </br></br>
+	     		<a href = "{{url_for('deleteCategoryItem', category_id = category.id, item_id=item.id)}}" class="btn btn-default btn-sm btn-del btnedel"><span class="glyphicon glyphicon-remove"></span> Delete</a>
+	     	    </br></br></br>
 
-	     		<div class="btn btn-default btn-sm">
+
+	     		<div class="btn btn-default btn-sm btn-back">
 	     			<a href = "{{url_for('showCategories')}}">
-	     	 		<span class="glyphicon glyphicon-arrow-left"></span> 
+	     	 		<span class="glyphicon glyphicon-chevron-left btn-del"></span>
 	     	 		</a>
 	     	 	</div>
 

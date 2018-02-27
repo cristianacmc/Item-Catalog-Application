@@ -2,6 +2,7 @@
 
 .title{
 	font-family: 'Saira Condensed', sans-serif;
+	letter-spacing: 3px;
 	color: #8CFA05;
 	font-weight: 700;
 	margin-left: 15px;
@@ -38,19 +39,27 @@
 
 .titlecat{
 	font-family: 'Oswald', sans-serif;
+	color: #337ab7;
 	font-weight: 400;
+	margin: 45px 0 30px 20px;
 }
 
-.latest{
+.latest {
 	font-family: 'Oswald', sans-serif;
+	letter-spacing: 3px;
 	font-weight: 600;
 	margin-top: 20px;
 	color: #0084b4;
 	font-size: 1.5;
 }
 
+.latcat {
+	letter-spacing: 0;
+}
+
 .namemod{
 	font-size: 20px;
+	margin-left: 20px;
 }
 
 .content-body{
@@ -60,15 +69,17 @@
 
 .newmod{
 	font-weight: bold;
+	margin-top: 20px;
 }
 
 .descrip{
-	color: #337ab7;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-size: 18px;
+	width: 90%;
+    margin: 15px 0 50px 20px;
 }
 
-.main{
+'.main'{
 	margin-top: 45px;
 }
 
@@ -110,5 +121,60 @@
 
 }
 
+.btn-del{
+	margin-left: 10px;
+	color: #333;
+}
 
+.btn-back{
+	padding: 0px 10px 5px 0px;
+	margin-left: 20px;
+	
+}
 
+.btn-default {
+    background-color: #fff;
+    border-color: transparent;
+}
+
+.ademail {
+	color: #8CFA05;;
+}
+
+.logbut {
+	margin-top: 50px;
+}
+
+.modalcat {
+	margin-top: 15px;
+
+}
+
+a:hover{
+	text-decoration: none;
+}
+
+.ptime {
+	margin: 0 0 10px;
+    color: #222;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 11px;
+} 
+
+.formedit {
+	margin-left: 20px;
+}
+
+.btnedel {
+	color: #fff;
+	background-color: #5cb85c;
+	border-color: #4cae4c;
+	margin-left: 20px;
+}
+
+.titleflash {
+	font-family: 'Oswald', sans-serif;
+    color: #337ab7;
+    font-weight: 400;
+    margin: 10px 0 0px 20px;
+}

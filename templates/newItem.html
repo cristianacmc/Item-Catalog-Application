@@ -2,11 +2,11 @@
 	{% extends "base.html" %}
     {% block title %}new modality{% endblock title %}
 	{% block content %}
-	<h1>New {{ category.name }} Modality</h1>
+	<h1 class="titlecat">New {{ category.name }} Modality</h1>
 	</br>
     
 
-    <form action="{{url_for('newCategoryItem', category_id=category.id)}}" method = 'post'>
+    <form class="formedit" action="{{url_for('newCategoryItem', category_id=category.id)}}" method = 'post'>
     	<div class="form-group">
     		<label for="name">Name:</label>
     		<input type ="text" name="name" class="form-control" id="name" maxlength="50" 
@@ -21,13 +21,15 @@
         </br>
 
         <div class="form-group">
-            <button type="submit" class="btn btn-primary" id="submit">Submit</button> 
+            <button class="btn btn-success" type="submit" id="submit">Submit</button>
+            </br></br></br>
         </div>
-        </br></br>
-        <div class="btn btn-default btn-sm">
-             <a href = "{{url_for('showCategories')}}">
-             <span class="glyphicon glyphicon-arrow-left"> Back</span> 
+    </form>
+
+        <div class="btn btn-default btn-sm btn-back">
+            <a href = "{{url_for('showCategories')}}">
+            <span class="glyphicon glyphicon-chevron-left btn-del"></span>
             </a>
-		</div>
-	</form>
+        </div>
+
 	{% endblock %}

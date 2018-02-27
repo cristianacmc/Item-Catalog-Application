@@ -5,12 +5,12 @@
 	
 	
 
-	<h1>Edit Modality</h1>
+	<h1 class="titlecat">Edit Modality</h1>
 	</br>			
-	<form action= "{{url_for('editItem', category_id = i.category_id, item_id = i.id)}}" 
+	<form class="formedit" action= "{{url_for('editItem', category_id = i.category_id, item_id = i.id)}}" 
 		method = 'post'>
 		
-		<div class="form-group">
+		<div class="form-group ">
 			<label for="name">Name:</label>
 			 <input type='text' name='name' class="form-control" id="name" value="{{i.name}}" >
     	</div>
@@ -27,11 +27,11 @@
         </div>
      </form>	
 
-        <div class="btn btn-default btn-sm">
-             <a href = "{{url_for('showCategories')}}">
-             <span class="glyphicon glyphicon-arrow-left">Back</span> 
-            </a>
-		</div>
+ 		<div class="btn btn-default btn-sm btn-back">
+ 			<a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
+ 	 		<span class="glyphicon glyphicon-chevron-left btn-del"></span>
+ 	 		</a>
+ 	 	</div>
  		
 
 	{% endblock %}

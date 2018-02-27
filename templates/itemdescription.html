@@ -2,20 +2,21 @@
 	{% extends "base.html" %}
 	{% block title %}Modality Description{% endblock title %}
 	{% block content %}
-		<div class="row">
-			<div class="col-md-12 cats">
-				<h2 class="titlecat text-uppercase">{{ category.name}}</h2>
-			    </br>
-			    <h3>{{ item.name}}</h3>
-				<p>{{ item.description }}<p>
-    			</br>
-    		</div>
-    		<div class="btn btn-default btn-sm">
-    			<a href = "{{url_for('showCategories')}}">
-    				<span class="glyphicon glyphicon-arrow-left"> Back</span> 
-		        </a>
-			</div>
+		<div class="row content-body">
+			<div class="col-md-12">
+				<h2 class="titlecat text-uppercase text-center">{{ category.name}}</h2></br>
+			    <h3 class="titlecat modalcat text-uppercase">{{ item.name}}</h3>
+				<p class="descrip">{{ item.description }}<p></br>
+    		
+     		<div class="btn btn-default btn-sm btn-back">
+     			<a href = "{{url_for('showCategories')}}">
+     	 		<span class="glyphicon glyphicon-chevron-left btn-del"></span>
+     	 		</a>
+     	 	</div>
+     	 	</div>
+	
 		</div>
 	{% endblock %}
+
 
 

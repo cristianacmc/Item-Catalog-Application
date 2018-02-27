@@ -33,33 +33,39 @@
 					{% for c in categories %}
 					<a href = "{{url_for('categoryItems', category_id = c.id)}}">
 					<img src="{{c.picture}}" alt="{{c.name}}"></br>
-					<figcaption><h5>{{c.name}}<h5></figcaption></br>
+					<figcaption><h5>{{c.name}}</h5></figcaption></br>
 					</a>
 					{% endfor %}
 				</li>
 			</ul>			
 		</div>
+
 		<div class="col-md-9 latest">
 			<h2 class="text-center">LATEST MODALITIES </h2>
 			{% for l in latests %}
-			 <a href = "{{url_for('ItemsDescription', category_id = l.category_id, item_id = l.id)}}">
+			
+			 <a class="latcat" href = "{{url_for('ItemsDescription', category_id = l.category_id, item_id = l.id)}}">
 			 	<h3>{{l.name}}</h3></a>{{l.category.name}}
-			 <p>{{l.date.strftime("%-d-%b-%Y at %I:%M %p")}}</p></br>
+			 <p class="ptime latcat">{{l.date.strftime("%-d-%b-%Y at %I:%M %p")}}</p></br>
 			{% endfor %}
+
 		</div>			
 	</div>
-	<footer class="row rodape bordered_t">   
-        <div class="col-md-6">
+
+	<footer class="row rodape bordered_t"> 		
+		<div class="col-md-6">
           <address>       
             <strong>Cristiana Costa</strong><br>
             Dublin-Ireland  
-            <a href="mailto:#">cristianacmc@gmail.com</a>
+            <a class="ademail" href="mailto:#">cristianacmc@gmail.com</a>
           </address>
-         </div>
+        </div>
          <div class="col-md-6">
           <p class="copy pull-right">copyright &#9400;</p>
         </div>
+	    
     </footer>
+  
 {% endblock %}
 
 
