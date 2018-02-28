@@ -1,4 +1,0 @@
-https://github.com/mitsuhiko/flask/tarball/master
-dataset
-nose
-Flask-Bootstrap
