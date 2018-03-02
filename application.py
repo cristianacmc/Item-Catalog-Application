@@ -137,7 +137,11 @@ def gconnect():
     output += '!</h1>'
     output += '<img src="'
     output += login_session['picture']
-    output += ' " style = "width: 300px; height: 300px;border-radius: 150px;-webkit-border-radius: 150px;-moz-border-radius: 150px;"> '
+    output += ' " style = "width: 300px;\
+     height: 300px;\
+     border-radius: 150px;\
+     -webkit-border-radius: 150px;\
+     -moz-border-radius: 150px;"> '
     print "done!"
     return output
 
@@ -260,7 +264,9 @@ def editItem(category_id, item_id):
     item = session.query(CategoryItem).filter_by(id=item_id).one()
     creator = getUserInfo(item.user_id)
     if creator.id != login_session['user_id']:
-        return "You do not have permission to edit this item."
+        flash("You cannot edit this item")
+        return redirect(url_for(
+            'ItemsDescription', category_id=category_id, item_id=item.id))
     if request.method == 'POST':
         if request.form['name']:
             item.name = request.form['name']
@@ -278,13 +284,14 @@ def editItem(category_id, item_id):
 # Delete item information
 @app.route('/category/<int:category_id>/<int:item_id>/delete', methods=[
     'GET', 'POST'])
+@login_required
 def deleteCategoryItem(category_id, item_id):
     item = session.query(CategoryItem).filter_by(id=item_id).one()
     creator = getUserInfo(item.user_id)
-    if 'username' not in login_session:
-        return redirect('/login')
     if creator.id != login_session['user_id']:
         flash("You cannot delete. The owner is %s" % creator.name)
+        return redirect(url_for(
+            'ItemsDescription', category_id=category_id, item_id=item.id))
     if request.method == 'POST':
         session.delete(item)
         session.commit()
