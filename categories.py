@@ -15,19 +15,8 @@ Base.metadata.bind = engine
 DBSession = sessionmaker(bind=engine)
 # A DBSession() instance establishes all conversations with the database
 # and represents a "staging zone" for all the objects loaded into the
-# database session object. Any change made against the objects in the
-# session won't be persisted into the database until you call
-# session.commit(). If you're not happy about the changes, you can
-# revert all of them back to the last commit by calling
-# session.rollback()
+# database session object.
 session = DBSession()
-
-#Create User
-'''User1 = User(name="Cristiana Costa", email="cristianacmc@gmail.com",
-             picture='https://lh6.googleusercontent.com/-ugZkUxkqwbc/AAAAAAAAAAI/AAAAAAAAAcw/-SnX5O_Ng3s/photo.jpg')
-session.add(User1)
-session.commit()'''
-
 
 # Catalog for Soccer
 soccer = Category(name="Soccer", 
@@ -78,35 +67,5 @@ skating = Category(name="Skating",
 session.add(skating)
 session.commit()
 
-'''categoryitem1 = CategoryItem( user_id=1, name="Outdoor Skates",
-							  description ="These skates are simply meant for the outdoors. Outdoor skates come in either low top or high top boots and the wheels are specifically designed to skate outdoors where the ground is not as smooth.",
-							  date = datetime.datetime.now(),
-							  category = skating)
-
-session.add(categoryitem1)
-session.commit()
-
-categoryitem2 = CategoryItem( user_id=1, name="Indoor Skates",
-							  description="These are traditional style skates that are for those wanting to skate in a skating rink, artistically dance, and those that want to rhythm skate.",
-					          date = datetime.datetime.now(),
-					          category = skating)
-
-session.add(categoryitem2)
-session.commit()
-
-
-# Catalog for Hockey
-category1 = Category(name="Hockey")
-
-session.add(category1)
-session.commit()
-
-categoryitem1 = CategoryItem( user_id=1, name="Bandy", 
-	                          description="Bandy is played with a ball on a football pitch-sized ice arena (bandy rink), typically outdoors, and with many rules similar to association football.",
-					          date = datetime.datetime.now(),
-					          category = climbing)
-
-session.add(categoryitem1)
-session.commit()'''
 
 print "added menu items!"

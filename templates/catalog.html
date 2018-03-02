@@ -1,24 +1,24 @@
-	
-	{% extends "base.html" %}
-	{% block title %}Modalities Sports{% endblock title %}
-	{% block content %}
-		<div class="row content-body ">
-			<div class="col-md-12 ">
-				<h2 class="titlecat text-uppercase">{{category.name}}</h2></br>
-				 {% for i in items%}
-				  <a  href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
-				  	<h3 class="titlecat modalcat text-uppercase">{{ i.name}}</h3></a>
-				 {% endfor %}
-				</br>
-				
-	     		<div class="btn btn-default btn-sm btn-back">
-	     			<a href = "{{url_for('showCategories')}}">
-	     	 		<span class="glyphicon glyphicon-chevron-left btn-del"></span> 
-	     	 		</a>
-	     	 	</div>
-			</div>
-		</div>
-	{% endblock %}
+
+{% extends "base.html" %}
+{% block title %}Modalities Sports{% endblock title %}
+{% block content %}
+    <div class="row content-body ">
+    	<div class="col-md-12 ">
+    		<h2 class="title-cat text-uppercase">{{category.name}}</h2></br>
+    		{% for i in items%}
+    		<a  href = "{{url_for('ItemsDescription', category_id=i.category_id, item_id=i.id)}}">
+    			<h3 class="title-cat modal-cat text-uppercase">{{ i.name}}</h3>
+    		</a>
+    		{% endfor %}
+    		</br>
+    		<div class="btn btn-default btn-sm btn-back">
+    			<a href = "{{url_for('showCategories')}}">
+    				<span class="glyphicon glyphicon-chevron-left btn-del"></span> 
+    			</a>
+    		</div>
+    	</div>
+    </div>
+{% endblock %}
 
 
 

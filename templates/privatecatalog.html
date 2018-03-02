@@ -1,22 +1,33 @@
-	{% extends "base.html" %}
-    {% block title %}Sports Modality{% endblock title %}
-	{% block content %}
-
 	
-	<div class="row content-body">
-		<div class="col-md-6 text-left">
-			<h2 class="titlecat text-uppercase">{{category.name}}</h2></br>
-			{% for i in items%}
-			<div class="namemod">
-				<a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">{{ i.name}}</a></br></br>
-			</div>
-			{% endfor %}			
+{% extends "base.html" %}
+{% block title %}Sports Modality{% endblock title %}
+{% block content %}
+
+<div class="row content-body">
+	<div class="col-md-6 text-left">
+		<h2 class="title-cat text-uppercase">{{category.name}}</h2>
+		</br>
+		{% for i in items%}
+		<div class="name-mod">
+			<a href = "{{url_for('ItemsDescription', category_id=i.category_id, item_id=i.id)}}">
+				{{ i.name}}
+			</a>
 		</div>
-		<div class="col-md-6">
-			<a class="btn btn-warning pull-right newmod" href="{{url_for('newCategoryItem', category_id = category.id)}}" role="button">New Modality</a>
+	{% endfor %}
+	</br></br>
+	</div>
+	<div class="col-md-6">
+		<a class="btn btn-warning pull-right new-mod" href="{{url_for('newCategoryItem', category_id=category.id)}}">
+				New Modality
+		</a>
+	</div>
+	<div class="col-md-12 text-left">
+		<div class="btn btn-default btn-sm btn-back">
+			<a href="{{url_for('showCategories')}}">
+				<span class="glyphicon glyphicon-chevron-left btn-del"></span>
+			</a>
 		</div>
 	</div>
-    {% endblock %}
-
-
+</div>
+{% endblock %}
 

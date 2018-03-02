@@ -1,35 +1,34 @@
-	
-	{% extends "base.html" %}
-    {% block title %}new modality{% endblock title %}
-	{% block content %}
-	<h1 class="titlecat">New {{ category.name }} Modality</h1>
-	</br>
-    
 
-    <form class="formedit" action="{{url_for('newCategoryItem', category_id=category.id)}}" method = 'post'>
-    	<div class="form-group">
-    		<label for="name">Name:</label>
-    		<input type ="text" name="name" class="form-control" id="name" maxlength="50" 
+{% extends "base.html" %}
+{% block title %}new modality{% endblock title %}
+{% block content %}
+
+<h1 class="title-cat">New {{ category.name }} Modality</h1>
+</br>
+
+<form class="form-edit" action="{{url_for('newCategoryItem', category_id=category.id)}}" method='post'>
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type ="text" name="name" class="form-control" id="name" maxlength="50" 
             placeholder="Modality Name">
-    	</div>
-        </br>
+    </div>
+    </br>
 
-    	<div class="form-group">
-    		<label for="description">Description</label>
-    		<textarea name="description" class="form-control" id="description" maxlength="250"  rows="3"></textarea>
-        </div>
-        </br>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea name="description" class="form-control" id="description" maxlength="250" rows="3"></textarea>
+    </div>
+    </br>
 
-        <div class="form-group">
-            <button class="btn btn-success" type="submit" id="submit">Submit</button>
-            </br></br></br>
-        </div>
-    </form>
+    <div class="form-group">
+        <button class="btn btn-success" type="submit" id="submit">Submit</button>
+        </br></br></br>
+    </div>
+</form>
 
-        <div class="btn btn-default btn-sm btn-back">
-            <a href = "{{url_for('showCategories')}}">
-            <span class="glyphicon glyphicon-chevron-left btn-del"></span>
-            </a>
-        </div>
-
-	{% endblock %}
+<div class="btn btn-default btn-sm btn-back">
+    <a href = "{{url_for('showCategories')}}">
+        <span class="glyphicon glyphicon-chevron-left btn-del"></span>
+    </a>
+</div>
+{% endblock %}

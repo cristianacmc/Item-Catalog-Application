@@ -1,39 +1,37 @@
 	
-	{% extends "base.html" %}
-    {% block title %}new modality{% endblock title %}
-	{% block content %}
-	
-	
+{% extends "base.html" %}
+{% block title %}new modality{% endblock title %}
+{% block content %}
 
-	<h1 class="titlecat">Edit Modality</h1>
-	</br>			
-	<form class="formedit" action= "{{url_for('editItem', category_id = i.category_id, item_id = i.id)}}" 
-		method = 'post'>
-		
-		<div class="form-group ">
-			<label for="name">Name:</label>
-			 <input type='text' name='name' class="form-control" id="name" value="{{i.name}}" >
-    	</div>
+<h1 class="title-cat">Edit Modality</h1>
+</br>			
+    <form class="form-edit" action= "{{url_for('editItem', category_id = i.category_id, item_id = i.id)}}"
+        method = 'post'>
+
+        <div class="form-group ">
+        	<label for="name">Name:</label>
+        	<input type='text' name='name' class="form-control" id="name" value="{{i.name}}">
+        </div>
 		</br>
-    	
-    	<div class="form-group">
-    		<label for="description">Description:</label>
-            <textarea name="description" id="description" class="form-control" maxlength="250" cols="30" rows="2">{{i.description}}</textarea></br>
+        
+        <div class="form-group">
+        	<label for="description">Description:</label>
+        	<textarea name="description" id="description" class="form-control" maxlength="250" cols="30" rows="2">{{i.description}}</textarea>
+        </br>
         </div>
 
         <div class="form-group">
         	<button class="btn btn-success" type="submit" id="submit">Submit</button>
-        	</br></br></br>
+        </br></br></br>
         </div>
-     </form>	
+    </form>
 
- 		<div class="btn btn-default btn-sm btn-back">
- 			<a href = "{{url_for('ItemsDescription', category_id = i.category_id, item_id = i.id)}}">
- 	 		<span class="glyphicon glyphicon-chevron-left btn-del"></span>
- 	 		</a>
- 	 	</div>
- 		
+    <div class="btn btn-default btn-sm btn-back">
+    	<a href = "{{url_for('ItemsDescription', category_id=i.category_id, item_id=i.id)}}">
+    		<span class="glyphicon glyphicon-chevron-left btn-del"></span>
+    	</a>
+    </div>
 
-	{% endblock %}
+{% endblock %}
 
 

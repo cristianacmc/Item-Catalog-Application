@@ -4,49 +4,73 @@
 
 
 	.title {
+
 		font-size: 1.2em;
-		margin-left: 0px;
+		margin-left: 0;
 	}
 
-
 	.content-header{
+
 		height: 70%;
 	}
 
 	.logo {
+
 	margin-right: -15px;
 	margin-top: -51px;
     }	
 
 	.rodape p {
-	   padding: 0px 0 10px 25px;
 
-	}    
+	   padding: 0  5px 25px;
+	   margin: -12px 2px 0 0;
+
+	}
+
+	.rodape {
+
+		font-size: 0.6em;
+
+	}   
 
 }
 
+@media screen and (min-width: 636px) {	
 
+	.rodape p {
+	   
+	   margin-top: -20px;
 
+	}
+
+}
 
 @media screen and (min-width: 992px) {
 
 	.title {
+
 		font-size: 1.6em;
-		margin-left: 0px;
+		margin-left: 0;
+
 	}
 
 	.logo {
-	margin-right: -15px;
-	margin-top: 0px;
+
+		margin-right: -15px;
+		margin-top: 0;
+
 	}
 
-	.bord{
+	.bord {
+
 		border-right: 1px solid #c6bcb6;;
     }
 
 	.rodape p {
-	   padding: 25px 0 10px 25px;
 
+	   padding-top: 25px;
+	   margin-top: 10px;
+	
 	}     
 
 

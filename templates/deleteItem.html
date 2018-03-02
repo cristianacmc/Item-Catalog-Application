@@ -1,19 +1,21 @@
 
-	{% extends "base.html" %}
-	{% block title %}Modality Description{% endblock title %}
-	{% block content %}
-		<div class="content-body">
-			<h3 class="titlecat"> Are you sure you want to delete {{item.name}}? </h3></br></br>
-			  <form action="{{ url_for('deleteCategoryItem', category_id = item.category_id, item_id = item.id)}}" method = 'post'>
-			  <button class="btn btn-success btnedel" type="submit" id="submit">Submit</button>
-			</form></br></br>
-	        
- 		<div class="btn btn-default btn-sm btn-back">
- 			<a href = "{{url_for('ItemsDescription', category_id = item.category_id, item_id = item.id)}}">
- 	 		<span class="glyphicon glyphicon-chevron-left btn-del"></span>
- 	 		</a>
- 	 	</div>
-		</div>
-	{% endblock %}
+{% extends "base.html" %}
+{% block title %}Modality Description{% endblock title %}
+{% block content %}
+	<div class="content-body">
+		<h3 class="title-cat"> Are you sure you want to delete {{item.name}}?</h3>
+		</br></br>
+		<form action="{{ url_for('deleteCategoryItem', category_id=item.category_id, item_id=item.id)}}"
+		     method = 'post'>
+		    <button class="btn btn-success btn-edit" type="submit" id="submit">Submit</button>
+		</form>
+	    </br></br>
+	<div class="btn btn-default btn-sm btn-back">
+		<a href = "{{url_for('ItemsDescription', category_id=item.category_id, item_id=item.id)}}">
+			<span class="glyphicon glyphicon-chevron-left btn-del"></span>
+		</a>
+	</div>
+	</div>
+{% endblock %}
 
 
